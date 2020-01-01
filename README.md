@@ -7,7 +7,7 @@
 + yarn
 + yarn serve
 
-![show](https://)
+![show](https://github.com/magdsnail/vue-viewUI-admin/blob/master/images/1577857354152.jpg)
 
 ### 官方文档
 [viewUI](https://www.iviewui.com/).
