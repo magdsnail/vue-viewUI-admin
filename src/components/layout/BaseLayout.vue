@@ -16,7 +16,7 @@
           <div class="user-avatar-dropdown">
             <Dropdown @on-click="handleClick">
               <span>Jason</span>
-              <Icon :size="15" type="md-arrow-dropdown"></Icon>
+              <Icon :size="15" type="md-arrow-dropdown" :class="{changed: isChanged}"></Icon>
               <DropdownMenu slot="list">
                 <DropdownItem name="logout">退出登录</DropdownItem>
               </DropdownMenu>
@@ -71,7 +71,8 @@ export default {
       WEBNAME: this.$config.CONSTANTS.WEBNAME,
       opennames: [],
       activeName: "",
-      isCollapsed: false
+      isCollapsed: false,
+      isChanged: false
     };
   },
   watch: {
@@ -126,6 +127,9 @@ export default {
           this.message();
           break;
       }
+    },
+    handleChange() {
+      this.isChanged = !this.isChanged;
     }
   }
 };
@@ -207,5 +211,10 @@ export default {
   height: 5vh;
   line-height: 6vh;
   padding: 0 50px !important;
+}
+.changed{
+  transform: translateX(0px);
+  transition: font-size 0.2s ease 0.2s, transform 0.2s ease 0.2s;
+  transform: rotate(-180deg);
 }
 </style>
