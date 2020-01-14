@@ -61,17 +61,19 @@ const router = new VueRouter({
 import util from '@/util'
 
 router.beforeEach((to, from, next) => {
-  if(to.path !== '/login') {
-    const isLogin = util.storage.get('loginuser') ? true : false;
-    if(isLogin) {
-      next();
-    } else {
-      next('/login');
-    }
-  }
   ViewUI.LoadingBar.start();
-  if (to.meta && to.meta.title) document.title = `FOX-${to.meta.title}`
-  next();
+  if (to.meta && to.meta.title) {
+    document.title = `FOX-${to.meta.title}`
+  } else {
+    document.title = `后台管理系统`
+  }
+
+  const isLogin = util.storage.get('loginuser') ? true : false;
+  if (to.path == '/login') {
+    next();
+  } else {
+    isLogin ? next() : next('/login');
+  }
 })
 
 router.afterEach(() => {
