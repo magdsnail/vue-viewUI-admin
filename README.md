@@ -3,6 +3,9 @@
 #### .env.production .env.development
 + 在.env.production中配置生成环境变量 如接口地址
 - 在.env.development中配置开发环境变量 如测试接口地址
+
++ 优化登录 采用store方案, 把登录和退出写在了store中页面直接调用， 也可以采用之前的localStorage sessionStorage
+
 #### 持续更新
 ## start
 + git clone https://github.com/magdsnail/vue-viewUI-system-admin.git

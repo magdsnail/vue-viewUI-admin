@@ -58,17 +58,20 @@ const router = new VueRouter({
   routes
 })
 
-import util from '@/util'
+// import util from '@/util'
+
+import store from '@/store'
 
 router.beforeEach((to, from, next) => {
   ViewUI.LoadingBar.start();
   if (to.meta && to.meta.title) {
-    document.title = `FOX-${to.meta.title}`
+    document.title = `SNAIL-${to.meta.title}`
   } else {
     document.title = `后台管理系统`
   }
 
-  const isLogin = util.storage.get('loginuser') ? true : false;
+  // const isLogin = util.storage.get('loginuser') ? true : false;
+  const isLogin = store.getters.token;
   if (to.path == '/login') {
     next();
   } else {
