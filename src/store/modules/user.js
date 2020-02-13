@@ -30,7 +30,6 @@ export default {
         Login({commit}, userInfo) {
             return new Promise((resolve, reject) => {
                 login({
-                    appType: userInfo.appType,
                     login: userInfo.userName,
                     passwd: userInfo.password
                 }).then((res) => {
@@ -41,7 +40,6 @@ export default {
                     };
                     commit(SETUSERINFO, info);
                     commit(SETTOKEN, Base64.encode(data.result.token));
-                    commit(SETREMPWD, userInfo.remPwd);
                     resolve(data);
                 }).catch((err) => {
                     reject(err);

@@ -12,6 +12,5 @@ export default {
             return userInfo;
         }
     },
-    token: state => state.user.token ? Base64.decode(state.user.token) : state.user.token,
-    rememberPwd: state => state.user.rememberPwd
+    token: state => state.user.token ? Base64.decode(state.user.token) : state.user.token
 }
