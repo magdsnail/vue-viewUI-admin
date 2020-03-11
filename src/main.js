@@ -4,7 +4,8 @@ import router from './router'
 import store from './store'
 
 import ViewUI from 'view-design';
-import 'view-design/dist/styles/iview.css';
+import '../my-theme/index.less';
+
 Vue.use(ViewUI);
 
 import config from './config'

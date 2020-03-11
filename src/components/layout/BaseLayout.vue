@@ -2,7 +2,6 @@
   <div class="layout">
     <Layout style="minHeight: 100vh;">
       <Header>
-        <Menu mode="horizontal" theme="dark" active-name="1">
           <div class="layout-logo">
             <span>{{ WEBNAME }}</span>
           </div>
@@ -15,14 +14,13 @@
           ></Icon>
           <div class="user-avatar-dropdown">
             <Dropdown @on-click="handleClick">
-              <span>Jason</span>
+              <span>snail</span>
               <Icon :size="15" type="md-arrow-dropdown" :class="{changed: isChanged}"></Icon>
               <DropdownMenu slot="list">
                 <DropdownItem name="logout">退出登录</DropdownItem>
               </DropdownMenu>
             </Dropdown>
           </div>
-        </Menu>
       </Header>
       <Layout>
         <Sider ref="side1" hide-trigger collapsible :collapsed-width="78" v-model="isCollapsed">
@@ -31,43 +29,51 @@
             @on-open-change="isCollapsed=false"
             @on-select="selectmenu"
             :active-name="activeName"
-            theme="dark"
+            :theme="themeCus"
             width="auto"
             :class="menuitemClasses"
             :open-names="opennames"
             accordion
           >
-            <MenuItem name="1" to="/">
-              <Icon type="ios-analytics"/>
-              <span>系统总览</span>
-            </MenuItem>
-            <MenuItem name="5">
-              <Icon type="ios-keypad-outline"/>
-              <span>安全管理</span>
-            </MenuItem>
-            <Submenu name="30">
-              <template slot="title">
-                <Icon type="ios-settings"></Icon>
-                <span>系统设置</span>
+          <template v-for="item in menuList">
+            <template v-if="item.children.length > 0">
+                <Submenu :name="item.meta.index">
+                  <template slot="title">
+                    <Icon :type="item.icon"></Icon>
+                    <span>{{item.meta.title}}</span>
+                  </template>
+                  <template v-for="child in item.children">
+                    <MenuItem :name="child.meta.index" :to="{name: child.name}">{{child.meta.title}}</MenuItem>
+                  </template>
+                </Submenu>
               </template>
-              <MenuItem name="30-1" to="/setting/password">修改密码</MenuItem>
-            </Submenu>
+              <template v-else>
+                <MenuItem :name="item.meta.index" :to="{name: item.name}">
+                  <Icon :type="item.icon" />
+                  <span>{{item.meta.title}}</span>
+                </MenuItem>
+              </template>
+            </template>
           </Menu>
         </Sider>
         <Content :style="{padding: '10px', background: '#fff', margin: '6px'}">
           <router-view></router-view>
         </Content>
       </Layout>
-      <Footer class="layout-footer-center">2019.10-{{ footerTime }} &copy; 荆轲</Footer>
+      <Footer class="layout-footer-center">2020.01-{{ footerTime }} &copy; 荆轲</Footer>
     </Layout>
   </div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
+import util from '@/util' //测试环境
+
 export default {
   name: "home",
   data() {
     return {
+      themeCus: "dark",
       WEBNAME: this.$config.CONSTANTS.WEBNAME,
       opennames: [],
       activeName: "",
@@ -86,6 +92,7 @@ export default {
     }
   },
   computed: {
+     ...mapGetters(["userInfo", "menuList"]),
     footerTime() {
       const now = `0${new Date().getMonth() + 1}`.slice(-2);
       return `${new Date().getFullYear()}.${now}`;
@@ -104,6 +111,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions(["Logout"]),
     selectmenu(name) {
       this.isCollapsed = false;
       if (name.split("-")[1]) {
@@ -121,12 +129,20 @@ export default {
     handleClick(name) {
       switch (name) {
         case "logout":
-          this.logout();
+          this.handleLogout();
           break;
-        case "message":
-          this.message();
+        default:
           break;
       }
+    },
+    handleLogout() {
+      // this.Logout().then(() => {
+      //   this.$Message.success("退出成功");
+      //   this.$router.replace({ name: "login" });
+      // });
+      util.storage.clear();//测试环境
+      this.$Message.success("退出成功");
+      this.$router.replace({ name: "login" });
     },
     handleChange() {
       this.isChanged = !this.isChanged;

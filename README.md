@@ -12,7 +12,8 @@
 + yarn
 + yarn serve
 
-![show](https://github.com/magdsnail/vue-viewUI-admin/blob/master/images/1577857354152.jpg)
++   更新
+![show](https://github.com/magdsnail/vue-viewUI-admin/blob/master/images/2.jpg)
 
 ### 官方文档
 [viewUI](https://www.iviewui.com/).
