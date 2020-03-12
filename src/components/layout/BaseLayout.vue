@@ -97,17 +97,25 @@ export default {
         this.$nextTick(() => {
           this.$refs.leftmenu.updateOpened();
         });
+      } else {
+        this.opennames = this.$route.meta.index
+          ? [this.$route.meta.index.split("-")[0]]
+          : [];
+        this.$nextTick(() => {
+          this.$refs.leftmenu.updateOpened();
+        });
       }
     },
     $route(newRoute) {
       if (newRoute.name == this.$config.CONFIG.homeName) {
+        this.opennames = [];
         this.activeName = "1";
-        this.$nextTick(() => {
-          this.$refs.leftmenu.updateActiveName();
-        });
       }
-      this.isShowName(newRoute);
-      this.setBreadCrumb(newRoute);
+      this.$nextTick(() => {
+        this.isShowName(newRoute);
+        this.setBreadCrumb(newRoute);
+        this.$refs.leftmenu.updateOpened();
+      });
     }
   },
   computed: {
@@ -139,6 +147,7 @@ export default {
       } else {
         this.opennames = [];
       }
+      this.activeName = name;
       this.$nextTick(() => {
         this.$refs.leftmenu.updateOpened();
       });
