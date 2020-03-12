@@ -12,5 +12,6 @@ export default {
             return userInfo;
         }
     },
-    token: state => state.user.token ? Base64.decode(state.user.token) : state.user.token
+    token: state => state.user.token ? Base64.decode(state.user.token) : state.user.token,
+    breadCrumbList: state => state.app.breadCrumbList
 }

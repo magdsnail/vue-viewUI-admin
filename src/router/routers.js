@@ -22,8 +22,8 @@ export default [
 		},
 		children: [
 			{
-				path: '',
-				name: 'appManin',
+				path: '/',
+				name: 'home',
 				component: () => import('@/views/Home.vue'),
 				meta: {
 					index: '1-1',
@@ -51,7 +51,8 @@ export default [
                 meta: {
                     index: '5-1',
                     hideInMenu: true,
-                    title: "服务列表"
+                    title: "服务列表",
+                    hideInBread: true
                 }
             }
         ]

@@ -28,3 +28,49 @@ export const getMenuByRouters = (list) => {
     });
     return res;
 }
+
+
+export const getBreadCrumbList = (route, homeRoute) => {
+    let homeItem = { ...homeRoute }
+    let routeMetched = route.matched
+    if (routeMetched.some(item => item.name === homeRoute.name)) { 
+        return [homeItem] 
+    }
+    let res = routeMetched.filter(item => {
+        return item.meta === undefined || !item.meta.hideInBread
+    }).map(item => {
+        let meta = { ...item.meta }
+        let obj = {
+            icon: (item.meta && item.meta.icon) || '',
+            name: item.name,
+            meta
+        }
+        return obj
+    })
+    // res = res.filter(item => {
+    //     return !item.meta.hideInMenu
+    // })
+    const result = [{ ...homeItem, to: homeRoute.path }, ...res];
+    return result;
+}
+
+export const getHomeRoute = (routers, homeName = 'home') => {
+    let i = -1
+    let len = routers.length
+    let homeRoute = {}
+    while (++i < len) {
+      let item = routers[i]
+      if (item.children && item.children.length) {
+        let res = getHomeRoute(item.children, homeName)
+        if (res.name) return res
+      } else {
+        if (item.name === homeName) homeRoute = item
+      }
+    }
+    return homeRoute
+  }
+
+export const showTitle = (item, vm) => {
+    let title = (item.meta && item.meta.title) || item.name;
+    return title;
+}
