@@ -142,12 +142,11 @@ export default {
     ...mapActions(["Logout"]),
     selectmenu(name) {
       this.isCollapsed = false;
+      this.opennames = [];
+      this.activeName = name;
       if (name.split("-")[1]) {
         this.opennames.push(name.split("-")[0]);
-      } else {
-        this.opennames = [];
       }
-      this.activeName = name;
       this.$nextTick(() => {
         this.$refs.leftmenu.updateOpened();
       });
