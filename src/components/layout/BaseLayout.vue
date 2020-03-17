@@ -58,7 +58,7 @@
         </Sider>
         <Content>
           <header-bread v-if="showHome" :list="breadCrumbList"></header-bread>
-          <div :style="{'padding': '20px', 'background': '#FFFFFF'}">
+          <div :style="{'padding': '20px'}">
             <router-view></router-view>
           </div>
         </Content>
