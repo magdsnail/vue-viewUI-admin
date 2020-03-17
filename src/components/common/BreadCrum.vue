@@ -34,5 +34,6 @@ export default {
   height: 40px;
   align-items: center;
   padding-left: 20px;
+  background-color: #f5f7f9;
 }
 </style>

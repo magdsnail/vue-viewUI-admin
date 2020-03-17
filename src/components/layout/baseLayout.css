@@ -5,6 +5,9 @@
     position: relative;
     overflow: hidden;
   }
+  .ivu-layout{
+    background-color: #FFFFFF;;
+  }
   .layout-logo {
     color: #fff;
     height: 30px;
