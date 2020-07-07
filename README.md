@@ -6,6 +6,8 @@
 
 + 优化登录 采用store方案, 把登录和退出写在了store中页面直接调用， 也可以采用之前的localStorage sessionStorage
 
+> 图标插件v-charts
+
 #### 持续更新
 ## start
 + git clone https://github.com/magdsnail/vue-viewUI-system-admin.git
