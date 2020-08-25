@@ -10,7 +10,7 @@
 
 #### 持续更新
 ## start
-+ git clone https://github.com/magdsnail/vue-viewUI-system-admin.git
++ git clone https://github.com/magdsnail/vue-viewUI-admin.git
 + yarn
 + yarn serve
 
