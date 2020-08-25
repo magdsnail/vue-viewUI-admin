@@ -8,13 +8,17 @@
 
 > 图标插件v-charts
 
-#### 持续更新
-## start
+### 持续更新
+### start
 + git clone https://github.com/magdsnail/vue-viewUI-admin.git
+### 进入项目目录
++ cd vue-viewUI-admin
+### 安装依赖
 + yarn
+### 本地开发 启动项目
 + yarn serve
 
-+   更新
+##   更新
 ![show](https://github.com/magdsnail/vue-viewUI-admin/blob/master/images/1.jpg)
 ![show](https://github.com/magdsnail/vue-viewUI-admin/blob/master/images/2.jpg)
 ![show](https://github.com/magdsnail/vue-viewUI-admin/blob/master/images/3.jpg)
